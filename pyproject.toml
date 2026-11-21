@@ -7,7 +7,11 @@ authors = [
     { name = "Gaia Ravid", email = "gaiar98@gmail.com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.5",
+    "pyside6>=6.12.0",
+]
 
 [project.scripts]
 lesson-4-home-work2 = "lesson_4_home_work2:main"
