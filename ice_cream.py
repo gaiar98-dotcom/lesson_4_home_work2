@@ -91,15 +91,17 @@ class IceCreamWindow(QMainWindow):
 
 
     def plot_graph(self):
-        """מתודה שמציירת כרגע גרף זמני - בשלב 3 ו-4 תערכי אותה בעצמך"""
         self.figure.clear()
         ax = self.figure.add_subplot(111)
 
-        # גרף זמני (Placeholder)
-        ax.plot([1, 2, 3, 4], [10, 20, 25, 30], marker="o")
-        ax.set_title("Temporary Graph (Load CSV to update)")
-        ax.set_xlabel("X Axis")
-        ax.set_ylabel("Y Axis")
+        ax.scatter(self.temperatures, self.revenues, s=1)
+
+        ax.spines["top"].set_visible(False)
+        ax.spines["right"].set_visible(False)
+
+        ax.set_title("Ice Cream Sales Revenue vs. Temperature")
+        ax.set_xlabel("Temperature (°C)")
+        ax.set_ylabel("Revenue ($)")
 
         self.canvas.draw()
 
