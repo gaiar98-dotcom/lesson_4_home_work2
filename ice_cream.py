@@ -1,5 +1,6 @@
 import os
 import sys
+import numpy as np
 from PySide6.QtWidgets import (
     QApplication,
     QMainWindow,
@@ -95,6 +96,16 @@ class IceCreamWindow(QMainWindow):
         ax = self.figure.add_subplot(111)
 
         ax.scatter(self.temperatures, self.revenues, s=1)
+
+        
+        if len(self.temperatures) > 0:
+            m, b = np.polyfit(self.temperatures, self.revenues, 1)
+            x_vals = np.array(self.temperatures)
+            y_vals = m * x_vals + b
+
+            equation = f"y = {m:.2f}x + {b:.2f}"
+            ax.plot(x_vals, y_vals, color="red", linewidth=2, label=equation)
+            ax.legend()
 
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
