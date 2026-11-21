@@ -23,7 +23,8 @@ class IceCreamWindow(QMainWindow):
         self.setWindowTitle("Ice Cream Sales Analysis")
         self.resize(800, 650)
 
-        # TODO (שלב 2): כאן תגדירי את 2 הרשימות הריקות (טמפרטורה ורווחים)
+        self.temperatures = []
+        self.revenues = []
 
         self.setup_ui()
         self.load_stylesheet()
@@ -71,7 +72,23 @@ class IceCreamWindow(QMainWindow):
         if not file_path:
             return
 
-        # TODO (שלב 2): כאן תפתחי את הקובץ, תסרקי ל-2 הרשימות ותקראי ל-self.plot_graph()
+
+        self.temperatures = []
+        self.revenues = []
+
+        with open(file_path, "r") as f:
+            lines = f.readlines()
+
+        for line in lines[1:]:
+            parts = line.strip().split(",")
+            temp = float(parts[0])
+            revenue = float(parts[1])
+
+            self.temperatures.append(temp)
+            self.revenues.append(revenue)
+
+        self.plot_graph()
+
 
     def plot_graph(self):
         """מתודה שמציירת כרגע גרף זמני - בשלב 3 ו-4 תערכי אותה בעצמך"""
